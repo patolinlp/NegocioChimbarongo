@@ -1,0 +1,31 @@
+<h1>Listing articulos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Venta</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articulos.each do |articulo| %>
+      <tr>
+        <td><%= articulo.ventum_id %></td>
+        <td><%= articulo.producto_id %></td>
+        <td><%= articulo.cantidad %></td>
+        <td><%= link_to 'Show', articulo %></td>
+        <td><%= link_to 'Edit', edit_articulo_path(articulo) %></td>
+        <td><%= link_to 'Destroy', articulo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Articulo', new_articulo_path %>

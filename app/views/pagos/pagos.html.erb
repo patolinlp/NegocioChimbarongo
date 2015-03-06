@@ -1,0 +1,56 @@
+<div class="page-header position-relative">
+    <h1>
+        Pagos
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Lista de todos los pagos
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span12">
+        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+	      <thead>
+	        <tr>
+	          <th>Fecha</th>
+	          <th>Nombre del Cliente</th>
+	          <th>Rut del Cliente</th>
+	          <th>Total</th>
+	          <th>Abono</th>
+	          <th></th>
+	        </tr>
+	      </thead>
+
+	      <tbody>
+	        <% @venta.each do |ventum| %>
+	          <% if ventum.pagado == false %>
+	            <tr>
+	              <td><%= ventum.fecha %></td>
+	              <td><%= Cliente.find(ventum.cliente_id).nombre.to_s + " " + Cliente.find(ventum.cliente_id).apellido.to_s %></td>
+	              <td><%= Cliente.find(ventum.cliente_id).rut %></td>
+	              <td><%= ventum.total %></td>
+	              <td><%= ventum.abono %></td>
+	              <td>
+	                <%= link_to pagar_venta_path(:id => ventum.id), data: { confirm: '¿Estás seguro que deseas dar por pagada esta venta?'}, :class => "btn btn-primary" do%>
+	                  <i class="fa fa-paypal"></i>
+	                  Pagar
+	                <% end %>
+	                <%= link_to abonar_venta_path(:id => ventum.id), :class => "btn btn-primary" do%>
+	                  <i class="fa fa-money"></i>
+	                  Abonar
+	                <% end %>
+	              </td>
+	            </tr>
+	          <% end %>  
+	        <% end %>
+	      </tbody>
+	    </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

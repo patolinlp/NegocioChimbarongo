@@ -1,0 +1,35 @@
+<div class="page-header position-relative">
+    <h1>
+        Tipo de Producto
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Resumen del tipo de producto
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span9">
+  	<div class="profile-info-row">
+      <div class="profile-info-name"> Nombre </div>
+
+      <div class="profile-info-value">
+        <span><%= @tipo_producto.nombre %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "form-inline pull-right">
+  <%= link_to edit_tipo_producto_path(@tipo_producto), :class => "btn btn-success" do %>
+    <i class="fa fa-edit"></i>
+    Editar
+  <% end %>
+   
+  <%= link_to tipo_productos_path, :class => "btn btn-warning" do %>
+    <i class="fa fa-reply"></i>
+    Volver
+  <% end %>
+</div>
+<% end %>

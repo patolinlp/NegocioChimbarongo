@@ -1,0 +1,36 @@
+<div id="forgot-box" class="forgot-box visible widget-box no-border">
+  <div class="widget-body">
+    <div class="widget-main">
+      <h4 class="header red lighter bigger">
+        <i class="fa fa-key"></i>
+        Recuperar Contraseña
+      </h4>
+      <div class="space-6"></div>
+      <p>
+        Ingrese su correo para instrucciones
+      </p>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  		<%= devise_error_messages! %>
+        <fieldset>
+          <label>
+            <span class="block input-icon input-icon-right">
+              <%= f.text_field :email, required: true, autofocus: true, :class => "span12", :placeholder => "Correo electrónico" %>
+            </span>
+          </label>  
+
+          <div class="clearfix">
+            <%= f.submit "Enviar", :class => "width-35 pull-right btn btn-small btn-danger" do %>
+                <i class="icon-key"></i>
+            <% end %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div><!--/widget-main-->
+    <div class="toolbar center">
+      <a class="back-to-login-link" href=<%=new_usuario_session_path%>> 
+        Volver a Iniciar Sesión
+        <i class="fa fa-arrow-right"></i>
+      </a>
+    </div>
+  </div><!--/widget-body-->
+</div><!--/login-box-->

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thoffey - Software</title>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+</head>
+
+<body>
+    <% usuario = current_usuario %>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a href= <%= root_path %> class="brand">
+                    <small>
+                        <i class="fa fa-microphone"></i>
+                        Software de Inventario y Venta
+                    </small>
+                </a><!--/.brand-->
+                
+                <ul class="nav ace-nav pull-right">
+                    <li class="purple">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge badge-important"><%= Alertum.count %></span>
+                        </a>
+
+                        <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
+                            <li class="nav-header">
+                                <i class="icon-warning-sign"></i>
+                                <%= Alertum.count %> alertas
+                            </li>
+                            <% @alerta = Alertum.all %>
+                            <% @alerta.each do |alertum| %>
+                                <li>
+                                    <%= link_to alertum do%>
+                                        <div class="clearfix">
+                                            <span class="pull-left">
+                                                <i class="btn btn-mini no-hover btn-pink fa fa-comment"></i>
+                                                <%= alertum.texto.at(0..20) %> ...
+                                            </span>
+                                            <span class="pull-right badge badge-info">1</span>
+                                        </div>
+                                    <% end %>
+                                </li>
+                            <% end %>
+
+                            <li>
+                                <%= link_to alerta_path do %>
+                                    Ver todas las alertas
+                                    <i class="icon-arrow-right"></i>
+                                <% end %>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="/images/avatars/avatar1.png" alt="Jason's Photo" />
+                            <span class="user-info">
+                                <small>Bienvenido,</small>
+                                <%= usuario.nombre %>
+                            </span>
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                            <% if usuario.tipo_usuario == 1 %>
+                                <li>
+                                    <%= link_to edit_usuario_path(usuario) do %>
+                                        <i class="fa fa-cog"></i>
+                                        Configuración
+                                    <% end %>
+                                </li>
+                            <% end %>
+                            <% if usuario.tipo_usuario != 0 %>
+                                <li>
+                                    <%= link_to usuario do %>
+                                        <i class="fa fa-user"></i>
+                                        Perfil
+                                    <% end %>
+                                </li>
+
+                                <li class="divider"></li>
+                            <% end %>
+                            <li>
+                                <%= link_to destroy_usuario_session_path ,:method=>'delete' do %>
+                                    <i class="fa fa-power-off"></i>
+                                    Cerrar Sesión
+                                <% end %>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!--/.ace-nav-->
+            </div><!--/.container-fluid-->
+        </div><!--/.navbar-inner-->
+    </div>
+
+    <div class="main-container container-fluid">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-small btn-success">
+                        <i class="fa fa-signal"></i>
+                    </button>
+
+                    <button class="btn btn-small btn-info">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+
+                    <button class="btn btn-small btn-warning">
+                        <i class="fa fa-group"></i>
+                    </button>
+
+                    <button class="btn btn-small btn-danger">
+                        <i class="fa fa-cogs"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+
+                    <span class="btn btn-info"></span>
+
+                    <span class="btn btn-warning"></span>
+
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!--#sidebar-shortcuts-->
+            
+            <ul class="nav nav-list">
+                <% if usuario.tipo_usuario != 0 %>
+                    <li>
+                        <a href= <%= root_path%> accesskey="i" >
+                            <i class="fa fa-dashboard"></i>
+                            <span class="menu-text"> Inicio </span> 
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href= <%= venta_path%> accesskey="v">
+                            <i class="fa fa-money"></i>
+                            <span class="menu-text"> Comenzar Venta </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href= <%= clientes_path%> accesskey="c">
+                            <i class="fa fa-cutlery"></i>
+                            <span class="menu-text"> Clientes </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href= <%= productos_path%> accesskey="p" >
+                            <i class="fa fa-cube"></i>
+                            <span class="menu-text"> Productos Inventario </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href= <%= pagos_path%> accesskey="p" >
+                            <i class="fa fa-credit-card"></i>
+                            <span class="menu-text"> Pagos / Abono </span>
+                        </a>
+                    </li>
+                <% end %>
+
+                <% if usuario.tipo_usuario == 1 %>
+
+                    <li>
+                        <a href= <%= tipo_productos_path%> accesskey="t" >
+                            <i class="fa fa-cubes"></i>
+                            <span class="menu-text"> Tipos de Productos </span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href= <%= usuarios_path%> accesskey="u" >
+                            <i class="fa fa-users"></i>
+                            <span class="menu-text"> Usuarios </span>
+                        </a>
+                    </li>
+                <% end %>
+            </ul><!--/.nav-list-->
+
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="fa fa-angle-double-left"></i>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <% if usuario.tipo_usuario == 0 %>
+                    
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="icon-home home-icon"></i>
+                            Su registro no está completo, un Administrador debe definir su tipo de usuario
+
+                            <span class="divider">
+                                <i class="icon-angle-right arrow-icon"></i>
+                            </span>
+                        </li>
+                    </ul>
+
+                <% else %>
+
+                    <% if notice != nil %>
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="icon-home home-icon"></i>
+                                <%= notice %>
+
+                                <span class="divider">
+                                    <i class="icon-angle-right arrow-icon"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    <% end %>
+
+                    <% if alert != nil %>    
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="icon-home home-icon"></i>
+                                <%= alert %>
+
+                                <span class="divider">
+                                    <i class="icon-angle-right arrow-icon"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    <% end %>
+                <% end %>
+                
+            </div>
+            <div class="page-content">
+                <!--Contenido de la página-->
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <!--PAGE CONTENT BEGINS-->
+                            <%= yield %>
+                            <!--PAGE CONTENT ENDS-->
+                        </div><!--/.span-->
+                    </div><!--/.row-fluid-->
+                <!--Final del Contenido-->
+            </div><!--/.page-content-->
+        </div><!--/.main-content-->
+    </div><!--/.main-container-->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse">
+        <i class="fa fa-angle-double-up fa fa-only bigger-110"></i>
+    </a>
+
+<!--inline scripts related to this page-->
+
+    <script type="text/javascript">
+        $(function() {
+            var oTable1 = $('#sample-table-2').dataTable( {
+            "aoColumns": [
+              { "bSortable": false },
+              null, null,null, null, null,
+              { "bSortable": false }
+            ] } );
+            
+            
+            $('table th input:checkbox').on('click' , function(){
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function(){
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+                    
+            });
+
+            $('.date-picker').datepicker().next().on(ace.click_event, function(){
+              $(this).prev().focus();
+            });
+        
+        
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+        
+                var off2 = $source.offset();
+                var w2 = $source.width();
+        
+                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+    
+</body>
+
+
+
+</html>

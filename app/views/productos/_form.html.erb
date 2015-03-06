@@ -1,0 +1,60 @@
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for(@producto, :class => "form-horizontal") do |f| %>
+      <% if @producto.errors.any? %>
+        <div class="step-content row-fluid position-relative" id="step-container">
+          <div class="step-pane active" id="step1">
+              <h3 class="lighter block green"><%= pluralize(@producto.errors.count, "error") %>. El producto no puede ser guardado debido a:</h3>
+              <ul>
+                <% @producto.errors.full_messages.each do |msg| %>
+                  <li>
+                    <span class="help-inline"><%= msg %></span>
+                  </li>
+                <% end %>
+              </ul>
+          
+          </div>
+        </div>
+      <% end %>
+
+      <div class="control-group">
+        <%= f.label :nombre, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :nombre, :id => "form-field-1", :placeholder => "Nombre del producto" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :valor, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.number_field :valor, :id => "form-field-1", :placeholder => "Valor del producto" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :tipo_producto_id, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.collection_select :tipo_producto_id, TipoProducto.all.collect, :id, :nombre, :class => "form-control"%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :stock, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.number_field :stock, :id => "form-field-1", :placeholder => "Cantidad de artículos" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :codigo, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :codigo, :id => "form-field-1", :placeholder => "Código" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Aceptar", :class => "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

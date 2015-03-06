@@ -1,0 +1,31 @@
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for(@tipo_producto, :class => "form-horizontal") do |f| %>
+      <% if @tipo_producto.errors.any? %>
+        <div class="step-content row-fluid position-relative" id="step-container">
+          <div class="step-pane active" id="step1">
+            <h3 class="lighter block green"><%= pluralize(@tipo_producto.errors.count, "error") %>. El tipo_producto no puede ser guardado debido a:</h3>
+            <ul>
+              <% @tipo_producto.errors.full_messages.each do |msg| %>
+                <li>
+                  <span class="help-inline"><%= msg %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="control-group">
+        <%= f.label :nombre, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :nombre, :id => "form-field-1", :placeholder => "Nombre" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Aceptar", :class => "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

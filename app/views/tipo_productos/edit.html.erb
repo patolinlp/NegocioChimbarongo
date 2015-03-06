@@ -1,0 +1,25 @@
+<div class="page-header position-relative">
+    <h1>
+        Producto
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Editar un producto
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario == 1 %>
+<%= render 'form' %>
+
+<div class = "form-inline pull-right">
+	<%= link_to @tipo_producto, :class => "btn btn-info" do %>
+        <i class="fa fa-search"></i>
+		Ver
+	<% end %>
+
+	<%= link_to tipo_productos_path, :class => "btn btn-warning" do %>
+        <i class="fa fa-reply"></i>
+		Volver
+	<% end %>
+</div>
+<% end %>

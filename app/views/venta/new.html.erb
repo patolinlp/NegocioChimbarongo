@@ -1,0 +1,23 @@
+<div class="page-header position-relative">
+    <h1>
+        Venta
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Crear una nueva venta
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class = "form-horizontal">
+	<%= link_to articulos_venta_path(@ventum), :class => "btn btn-primary", :accesskey => "n" do %>
+		<i class="fa fa-money"></i>
+		Venta al Contado
+	<% end %>
+	  
+	<%= link_to credito_path(@ventum), :class => "btn btn-primary", :accesskey => "c" do %>
+		<i class="fa fa-bomb"></i>
+		Venta sin Cobrar
+	<% end %>
+</div>
+<% end %>

@@ -1,0 +1,69 @@
+<div class="page-header position-relative">
+    <h1>
+        Producto
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Resumen del producto
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span9">
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Código </div>
+
+      <div class="profile-info-value">
+        <span><%= @producto.codigo %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Nombre </div>
+
+      <div class="profile-info-value">
+        <span><%= @producto.nombre %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Valor </div>
+
+      <div class="profile-info-value">
+        <span><%= @producto.valor %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Tipo de Producto </div>
+
+      <div class="profile-info-value">
+        <span><%= @producto.tipo_producto.nombre %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Cantidad </div>
+
+      <div class="profile-info-value">
+        <span><%= @producto.stock %></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class = "form-inline pull-right">
+  <%= link_to edit_producto_path(@producto), :class => "btn btn-success" do %>
+    <i class="fa fa-edit"></i>
+    Editar
+  <% end %>
+    
+  <%= link_to productos_path, :class => "btn btn-warning" do %>
+    <i class="fa fa-reply"></i>
+    Volver
+  <% end %>
+</div>
+<% end %>

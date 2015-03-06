@@ -1,0 +1,65 @@
+<div class="page-header position-relative">
+    <h1>
+        Usuario
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Datos de Usuario
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span9">
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Nombre </div>
+
+      <div class="profile-info-value">
+        <span><%= @usuario.nombre %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Apellido </div>
+
+      <div class="profile-info-value">
+        <span><%= @usuario.apellido %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Correo </div>
+
+      <div class="profile-info-value">
+        <span><%= @usuario.email %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Tipo de Usuario </div>
+
+      <div class="profile-info-value">
+        <% if @usuario.tipo_usuario == 0 %>
+          <span class="label label-important arrowed-in-right arrowed">No Terminado</span>
+        <% elsif @usuario.tipo_usuario == 1 %>
+          <span class="label label-success arrowed-in-right arrowed">Administrador</span>
+        <% else %>
+          <span class="label label-warning arrowed-in-right arrowed">Vendedor</span>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<% if current_usuario.tipo_usuario == 1 %>
+  <div class = "form-inline pull-right">
+    <%= link_to usuarios_path, :class => "btn btn-warning" do %>
+      <i class="fa fa-reply"></i>
+      Volver
+    <% end %>
+  </div>
+<% end %>
+
+<% end %>

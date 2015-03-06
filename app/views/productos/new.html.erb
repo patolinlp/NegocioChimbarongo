@@ -1,0 +1,19 @@
+<div class="page-header position-relative">
+    <h1>
+        Producto
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Crear un nuevo producto
+        </small>
+    </h1>
+</div><!--/.page-header-->
+<% if current_usuario.tipo_usuario != 0 %>
+<%= render 'form' %>
+
+<div class = "form-inline pull-right">
+	<%= link_to productos_path, :class => "btn btn-warning" do %>
+        <i class="fa fa-reply"></i>
+		Volver
+	<% end %>
+</div>
+<% end %>

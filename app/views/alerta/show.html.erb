@@ -1,0 +1,27 @@
+<div class="page-header position-relative">
+    <h1>
+        Alertas
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Resumen de la Alerta
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<div class="row-fluid">
+  <div class="span9">
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Alerta debido a: </div>
+
+      <div class="profile-info-value">
+        <span><%= @alertum.texto %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to root_path, :class => "btn btn-warning" do %>
+  <i class="fa fa-reply"></i>
+  Volver
+<% end %>

@@ -1,0 +1,52 @@
+<div class="page-header position-relative">
+    <h1>
+        Usuario
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Editar datos de Usuario
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario == 1 %>
+  <div class="row-fluid">
+    <div class="span12">
+      <%= form_for(@usuario, :class => "form-horizontal") do |f| %>
+        <% if @usuario.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+
+            <ul>
+            <% @usuario.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="control-group">
+          <%= f.label :tipo_usuario, :class => "control-label", :for => "form-field-1" %>
+          <div class="controls">
+            <%= f.select :tipo_usuario, [['Inhabilitado', 0], ['Administrador', 1], ['Vendedor', 2]] %>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Aceptar", :class => "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class = "form-inline pull-right">
+    <%= link_to @usuario, :class => "btn btn-info" do %>
+      <i class="fa fa-search"></i>
+    	Ver
+    <% end %>
+      
+    <%= link_to usuarios_path, :class => "btn btn-warning" do %>
+      <i class="fa fa-reply"></i>
+    	Volver
+    <% end %>
+  </div>
+<% end %>

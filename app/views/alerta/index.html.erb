@@ -1,0 +1,41 @@
+<div class="page-header position-relative">
+    <h1>
+        Productos
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Lista de todos los productos
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span12">
+        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Razón de la alerta</th>
+              <th>Producto</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @alerta.each do |alertum| %>
+              <tr>
+                <td><%= alertum.texto %></td>
+                <td><%= Producto.find(alertum.producto_id).nombre %></td>
+                <td>
+                  <%= link_to alertum, :class => "btn btn-mini btn-success", :rel => "tooltip", :title => "Ver detalles" do%>
+                    <i class="fa fa-search bigger-120"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

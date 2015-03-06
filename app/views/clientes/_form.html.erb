@@ -1,0 +1,81 @@
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for(@cliente) do |f| %>
+      <% if @cliente.errors.any? %>
+        <div class="step-content row-fluid position-relative" id="step-container">
+          <div class="step-pane active" id="step1">
+              <h3 class="lighter block green"><%= pluralize(@cliente.errors.count, "error") %>. El cliente no puede ser guardado debido a:</h3>
+              <ul>
+                <% @cliente.errors.full_messages.each do |msg| %>
+                  <li>
+                    <span class="help-inline"><%= msg %></span>
+                  </li>
+                <% end %>
+              </ul>
+          
+          </div>
+        </div>
+      <% end %>
+      
+      <div class="control-group">
+        <%= f.label :nombre, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :nombre, :id => "form-field-1", :placeholder => "Nombre" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :apellido, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :apellido, :id => "form-field-1", :placeholder => "Apellido" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :rut, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :rut, :id => "form-field-1", :placeholder => "Rut" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :direccion, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :direccion, :id => "form-field-1", :placeholder => "Dirección" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :telefono, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :telefono, :id => "form-field-1", :placeholder => "Teléfono" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :nombre_aval, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :nombre_aval, :id => "form-field-1", :placeholder => "Nombre del Aval" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :apellido_aval, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :apellido_aval, :id => "form-field-1", :placeholder => "Apellido del Aval" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :rut_aval, :class => "control-label", :for => "form-field-1" %>
+        <div class="controls">
+          <%= f.text_field :rut_aval, :id => "form-field-1", :placeholder => "Rut del Aval" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Aceptar", :class => "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

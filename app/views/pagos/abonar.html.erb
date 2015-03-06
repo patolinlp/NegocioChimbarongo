@@ -1,0 +1,115 @@
+<div class="page-header position-relative">
+    <h1>
+        Pagos
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Abonar a la venta
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span12">
+  	<div class="row-fluid">
+      <h3 class="header smaller lighter green">Detalles de la Venta</h3>
+    </div>
+  </div>
+
+  <div class="span9">
+  	<div class="profile-info-row">
+      <div class="profile-info-name"> Vendedor </div>
+
+      <div class="profile-info-value">
+        <span><%= Usuario.find(@ventum.usuario_id).nombre.to_s + " " + Usuario.find(@ventum.usuario_id).apellido.to_s %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Lista de Productos </div>
+
+      <div class="profile-info-value">
+      <% if @articulos == nil %>
+        <span>No se registraron productos en esta venta</span>
+      <% else %>
+        <div class="row-fluid">
+          <div class="span12">
+            <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                
+                <% @articulos.each do |articulo| %>
+                  <tr>
+                    <td><%= Producto.find(articulo.producto_id).nombre %></td>
+                    <td><%= articulo.cantidad %></td>
+                  </tr>
+                <% end %>  
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Total Venta </div>
+
+      <div class="profile-info-value">
+        <span><%= @ventum.total %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Abonado </div>
+
+      <div class="profile-info-value">
+        <span><%= @ventum.abono %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Total restante </div>
+
+      <div class="profile-info-value">
+        <span><%= (@ventum.total - @ventum.abono) %></span>
+      </div>
+    </div>
+  </div> 
+
+  <div class="span12">
+    <div class="row-fluid">
+      <h3 class="header smaller lighter green">Opciones de abono</h3>
+    </div>
+  </div>
+
+  <div class="span12">
+    <%= form_tag :action => "agregar_abono", :html => {:role => "form", :class => "form-inline"} do %>
+      
+      <div class="input-prepend">
+        <span class="add-on">
+          <i class="fa fa-money"></i>
+        </span>
+        <%= number_field_tag :abono, nil, :placeholder => "Abono para la venta" %>
+      </div>
+
+      <%= submit_tag "Listo", :class => "btn btn-sm btn-success" %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class = "form-inline pull-right">
+  <%= link_to pagos_path, :class => "btn btn-warning" do %>
+    <i class="fa fa-times"></i>
+    Cancelar
+  <% end %>
+</div>
+<% end %>

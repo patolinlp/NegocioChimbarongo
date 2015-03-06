@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thoffey - Iniciar Sesión</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="login-layout">
+    <div class="main-container container-fluid">
+        <div class="main-content">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="login-container">
+                        <div class="row-fluid">
+                            <div class="center">
+                                <h1>
+                                    <i class="fa fa-glass green"></i>
+                                    <span class="red">Distribuidor de Licores</span>
+                                    <span class="white">Thoffey</span>
+                                </h1>
+                                <h4 class="blue">Venta y Contabilidad</h4>
+                            </div>
+                        </div>
+
+                        <div class="space-6"></div>
+
+                        <div class="row-fluid">
+                            <div class="position-relative">
+                                <%= yield %>
+                            </div><!--/position-relative-->
+                        </div>
+                    </div>
+                </div><!--/.span-->
+            </div><!--/.row-fluid-->
+        </div>
+    </div><!--/.main-container-->
+
+    <!--basic scripts-->
+
+    <!--inline scripts related to this page-->
+
+    <script type="text/javascript">
+        function show_box(id) {
+         $('.widget-box.visible').removeClass('visible');
+         $('#'+id).addClass('visible');
+        }
+    </script>
+</body>
+</html>

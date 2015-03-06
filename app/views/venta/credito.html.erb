@@ -1,0 +1,42 @@
+<div class="page-header position-relative">
+    <h1>
+        Carrito de Compras
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Lista de Artículos
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span12">
+    <!--PAGE CONTENT BEGINS-->
+
+    <div class="row-fluid">
+      <h3 class="header smaller lighter green">Detalles de Crédito</h3>
+    </div>
+    <%= form_tag :action => "seleccionar_cliente", :class => "form-horizontal" do %>
+
+      <div class="control-group">
+        <label>Cliente</label>
+        <div class="controls">
+          <%= select_tag :cliente, options_for_select(@clientes.collect { |cliente| [cliente.nombre.to_s + " " + cliente.apellido.to_s + " - " + cliente.rut.to_s, cliente.id] }), :include_blank => '- Todos los clientes -' %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= submit_tag "Siguente", :class => "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="pull-right">
+  <%= link_to cancelar_venta_path, data: {confirm: '¿Esta seguro que quiere cancelar la venta?'}, :class => "btn btn-warning" do %>
+    <i class="fa fa-times"></i>
+    Cancelar
+  <% end %>
+</div>
+<% end %>
+

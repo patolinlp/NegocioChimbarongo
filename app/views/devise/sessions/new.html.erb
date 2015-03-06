@@ -1,0 +1,62 @@
+<div id="login-box" class="login-box visible widget-box no-border">
+	<div class="widget-body">
+		<div class="widget-main">
+			<h4 class="header blue lighter bigger">
+				<i class="fa fa-coffee green"></i>
+				Ingrese sus datos de usuario
+			</h4>
+
+			<div class="space-6"></div>
+
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+				<fieldset>
+					
+					<div class="form-inputs">
+						<label>
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :email, required: true, autofocus: true , :class => "span12", :placeholder => "Correo electrónico" %>
+							</span>
+						</label>
+
+						<label>
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :password, required: true, :type => "password", :class => "span12", :placeholder => "Contraseña"%>
+							</span>
+						</label>
+					</div>
+
+					<div class="space"></div>
+
+					<div class="clearfix">
+						<% if devise_mapping.rememberable? -%>
+							<label class="inline">
+								<%= f.check_box :remember_me %>
+								<span class="lbl"> Recordarme</span>
+							</label>
+						<% end %>
+
+						<%= submit_tag "Iniciar Sesión", :class => "width-50 pull-right btn btn-small btn-primary" %>
+					</div>
+
+					<div class="space-4"></div>
+				</fieldset>
+			<% end %>
+		</div><!--/widget-main-->
+
+		<div class="toolbar clearfix">
+			<div>
+				<a class="forgot-password-link" href= <%= new_usuario_password_path %>>
+					<i class="fa fa-arrow-left"></i>
+					¿Contraseña?
+				</a>
+			</div>
+
+			<div>
+				<a href= <%= new_usuario_registration_path %> class="user-signup-link">
+					Registrarse
+					<i class="fa fa-arrow-right"></i>
+				</a>
+			</div>
+		</div>
+	</div><!--/widget-body-->
+</div><!--/login-box-->

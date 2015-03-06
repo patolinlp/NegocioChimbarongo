@@ -1,0 +1,92 @@
+<div class="page-header position-relative">
+    <h1>
+        Venta
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Detalle de la Venta
+        </small>
+    </h1>
+</div><!--/.page-header-->
+
+<% if current_usuario.tipo_usuario != 0 %>
+<div class="row-fluid">
+  <div class="span9">
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Nombre </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.nombre %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Apellido </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.apellido %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Rut </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.rut %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Dirección </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.direccion %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Teléfono </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.telefono %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Nombre del Aval </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.nombre_aval %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Apellido del Aval </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.apellido_aval %></span>
+      </div>
+    </div>
+
+    <div class="profile-info-row">
+      <div class="profile-info-name"> Rut del Aval </div>
+
+      <div class="profile-info-value">
+        <span><%= @cliente.rut_aval %></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class = "form-inline pull-right">
+  <%= link_to edit_cliente_path(@cliente) , :class => "btn btn-info" do %>
+    <i class="fa fa-edit"></i>
+    Editar
+  <% end %>
+
+  <%= link_to clientes_path , :class => "btn btn-warning" do %>
+    <i class="fa fa-reply"></i>
+    Volver
+  <% end %>
+</div>
+<% end %>
